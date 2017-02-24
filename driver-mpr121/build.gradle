@@ -1,5 +1,18 @@
 apply plugin: 'com.android.library'
 
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+    }
+}
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
@@ -10,6 +23,54 @@ android {
         versionCode 1
         versionName "1.0"
     }
+}
+
+group = 'com.tck.android.things' // Change this to match your package name
+version = '1.0' // Change this to match your version number
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+task javadoc(type: Javadoc) {
+    options.addBooleanOption('Xdoclint:none', true)
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+bintray {
+    user = 'tck-mobile'
+    key = 'bded316fffdc77b834c7f13c774f8a49929470cc'
+
+    pkg {
+        repo = 'android-things-driver-mpr121'
+        name = 'android-things-driver-mpr121'
+        //userOrg = 'The Cocktail'
+        licenses = ['GPL-3.0']
+        vcsUrl = 'https://github.com/the-cocktail/android-things-driver-mpr121.git'
+        websiteUrl = 'https://github.com/the-cocktail/android-things-driver-mpr121'
+        publish = true
+        publicDownloadNumbers = true
+
+        version {
+            name = '1.0'
+            desc = 'Version 1.0 of MPR121 driver'
+            released = new Date()
+            vcsTag = '1.0'
+        }
+    }
+    configurations = ['archives']
 }
 
 dependencies {
