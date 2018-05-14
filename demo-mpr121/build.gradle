@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.tck.mpr121.demo"
         minSdkVersion 24
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -20,6 +20,6 @@ android {
 }
 
 dependencies {
-    provided 'com.google.android.things:androidthings:0.2-devpreview'
-    compile project(':driver-mpr121')
+    compileOnly 'com.google.android.things:androidthings:1.0'
+    implementation project(':driver-mpr121')
 }

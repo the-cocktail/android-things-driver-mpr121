@@ -1,6 +1,6 @@
 package com.tck.android.things.driver.mpr121.demo;
 
-import com.google.android.things.pio.PeripheralManagerService;
+import com.google.android.things.pio.PeripheralManager;
 
 import com.tck.android.things.drivers.mpr121.Mpr121;
 import com.tck.android.things.drivers.mpr121.event.TouchEvent;
@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private PeripheralManagerService peripheralManager = new PeripheralManagerService();
+    private PeripheralManager peripheralManager = PeripheralManager.getInstance();
     private Mpr121 mpr121;
 
     @Override
