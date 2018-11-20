@@ -1,7 +1,7 @@
 package com.tck.android.things.drivers.mpr121;
 
 import com.google.android.things.pio.I2cDevice;
-import com.google.android.things.pio.PeripheralManagerService;
+import com.google.android.things.pio.PeripheralManager;
 
 import com.tck.android.things.drivers.mpr121.event.TouchEvent;
 import com.tck.android.things.drivers.mpr121.listener.TouchListener;
@@ -39,7 +39,7 @@ public class Mpr121 implements AutoCloseable {
      * @param bus
      */
     public Mpr121(String bus) throws IOException {
-        PeripheralManagerService pioService = new PeripheralManagerService();
+        PeripheralManager pioService = PeripheralManager.getInstance();
         I2cDevice device = pioService.openI2cDevice(bus, Mpr121Values.MPR121_ADDRESS);
         connect(device);
     }
