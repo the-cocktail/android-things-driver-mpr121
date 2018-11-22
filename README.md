@@ -13,7 +13,7 @@ How to use the driver
 ### Gradle dependency
 
 To use the `mpr121` driver, simply add the line below to your project's `build.gradle`,
-where `<version>` matches the last version of the driver available on [jcenter][jcenter].
+where `<version>` matches the last version of the driver available on https://bintray.com/tck-mobile/android-things-driver-mpr121/android-things-driver-mpr121.
 
 ```
 dependencies {
